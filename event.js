@@ -1,59 +1,18 @@
+// getting the event-emitter class
 const EventEmitter = require("node:events");
 
 const emitter = new EventEmitter();
 
-// emitter.on("greet-me", (fullName) => {
-//     console.log("hi bro", fullName);
-// });
+const greetListener = () => console.log(`Hello NodeJS!`);
 
-// emitter.addListener("greet-me", (fullName) => {
-//     console.log("hi world", fullName);
-// });
+emitter.on("greet", (username) => console.log(`Hey ${username}!`));
+emitter.on("greet", greetListener);
+emitter.emit("greet", "YashBitCode");
 
-// emitter.emit("greet-me", "YashBitCode");
+emitter.removeListener("greet", greetListener);
+console.log(emitter.listeners("greet"));
 
-const eventCnt = {
-    login: 0,
-    purchase: 0,
-    logout: 0,
-    "profile-update": 0
-};
+emitter.once("notify-once", () => console.log("notified once"));
+emitter.emit("notify-once");
 
-emitter.on("user-login", (fullname) => {
-    console.log("user logged in: ", fullname);
-    eventCnt.login++;
-});
-
-emitter.on("user-logout", () => {
-    console.log("user logged out");
-    eventCnt.logout++;
-});
-
-emitter.on("user-purchase", () => {
-    console.log("purchased");
-    eventCnt.purchase++;
-});
-
-emitter.on("user-profile-update", () => {
-    console.log("profile updated");
-    eventCnt["profile-update"]++;
-});
-
-emitter.on("get-summary", () => {
-    const { login, purchase, logout } = eventCnt;
-
-    console.log("login: ", login);
-    console.log("logout: ", logout);
-    console.log("purchase: ", purchase);
-    console.log("profile update: ", eventCnt["profile-update"]);
-});
-
-emitter.emit("user-login", "YashBit");
-emitter.emit("user-logout");
-emitter.emit("user-purchase");
-emitter.emit("user-profile-update");
-emitter.emit("user-profile-update");
-emitter.emit("get-summary");
-
-emitter.removeAllListeners();
-// emitter.emit("get-summary");
+console.log(emitter.listenerCount("greet"));

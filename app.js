@@ -1,4 +1,4 @@
-const fs = require("fs");
+// const fs = require("fs");
 // // const a = 100;
 
 // setImmediate(() => console.log("set-immediate"));
@@ -126,25 +126,25 @@ const fs = require("fs");
 // process.nextTick setImm
 // <file content>
 
-setImmediate(() => console.log("setImmediate"));
+// setImmediate(() => console.log("setImmediate"));
 
-setTimeout(() => console.log("Timer expired"), 0);
+// setTimeout(() => console.log("Timer expired"), 0);
 
-Promise.resolve("promise").then(console.log);
+// Promise.resolve("promise").then(console.log);
 
-fs.readFile("./file.txt", "utf8", (_, data) => {
-    setTimeout(() => console.log("2nd timer"), 0);
+// fs.readFile("./file.txt", "utf8", (_, data) => {
+//     setTimeout(() => console.log("2nd timer"), 0);
 
-    process.nextTick(() => console.log("2nd nextTick"));
+//     process.nextTick(() => console.log("2nd nextTick"));
 
-    setImmediate(() => console.log("2nd setImmediate"));
+//     setImmediate(() => console.log("2nd setImmediate"));
 
-    console.log(data);
-});
+//     console.log(data);
+// });
 
-process.nextTick(() => console.log("process.nextTick"));
+// process.nextTick(() => console.log("process.nextTick"));
 
-console.log("Last line of the file.");
+// console.log("Last line of the file.");
 
 // OUTPUT
 // Last line of the file.
@@ -157,22 +157,22 @@ console.log("Last line of the file.");
 // 2nd setImmediate
 // 2nd timer
 
-setImmediate(() => console.log("setImmediate"));
+// setImmediate(() => console.log("setImmediate"));
 
-setTimeout(() => console.log("Timer expired"), 0);
+// setTimeout(() => console.log("Timer expired"), 0);
 
-Promise.resolve("promise").then(console.log);
+// Promise.resolve("promise").then(console.log);
 
-fs.readFile("./file.txt", "utf8", (_, data) => {
-    console.log(data);
-});
+// fs.readFile("./file.txt", "utf8", (_, data) => {
+//     console.log(data);
+// });
 
-process.nextTick(() => {
-    process.nextTick(() => console.log("inner nextTick"));
-    console.log("process.nextTick");
-});
+// process.nextTick(() => {
+//     process.nextTick(() => console.log("inner nextTick"));
+//     console.log("process.nextTick");
+// });
 
-console.log("Last line of the file.");
+// console.log("Last line of the file.");
 
 // OUTPUT
 // process.nextTick
@@ -181,3 +181,9 @@ console.log("Last line of the file.");
 // Timer expired
 // setImmediate
 // <file content>
+
+const fs = require("v8");
+console.log(first)
+
+// 
+// what is POSIX
