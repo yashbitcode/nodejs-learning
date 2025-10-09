@@ -1,41 +1,77 @@
-const http = require("http");
-const url = require("url");
+const fs = require("node:fs");
+const http = require("node:http");
+// const url = require("url");
 
 const server = http.createServer((req, res) => {
-    // const parsedUrl = url.parse(req.url, true);
-    // const queries = parsedUrl.query;
 
-    // console.log(req.method);
+     const logData = `Timestamp: ${Date.now()}\nRequest Method: ${req.method}\nRequest URL: ${req.url}\n\n`;
 
-    // if(Object.keys(queries).length > 0) res.end(JSON.stringify(queries));
-    // else res.end(JSON.stringify({
-    //     queries: "Queries Needed"
-    // }));
+    fs.appendFile("./httpServer/logs.txt", logData, () => {});
 
-    console.log(req.url);
+    switch (req.method) {
+        case "GET": {
+            switch (req.url) {
+                case "/": {
+                    res.writeHead(200);
+                    res.end("Homepage, HELLO BRO!");
 
-    switch(req.url) {
-        case "/": {
-            res.writeHead(200);
-            return res.end("Homepage");
+                    break;
+                }
+
+                case "/contact-us": {
+                    res.writeHead(200, {
+                        "Content-Type": "application/json",
+                    });
+                    res.end(
+                        JSON.stringify({
+                            name: "YashBitCode",
+                            email: "yash@bit.code",
+                            contact: "+91 99XXX XXXXX",
+                        })
+                    );
+
+                    break;
+                }
+
+                case "/about-us": {
+                    res.writeHead(200);
+                    res.end("About page");
+
+                    break;
+                }
+
+                case "/tweets": {
+                    res.writeHead(200, {
+                        "Content-Type": "application/json"
+                    }).end(JSON.stringify({
+                        data: ["tweet-1", "tweet-2", "tweet-3"]
+                    }))
+                    break;
+                }
+
+                default: {
+                    res.writeHead(404);
+                    res.end("Invalid page");
+                }
+            }
+
+            break;
         }
 
-        case "/contact-us": {
-            res.writeHead(200);
-            return res.end("Contact page");
-        }
+        case "POST": {
+            switch (req.url) {
+                case "/tweets": {
+                    res.writeHead(201).end("Tweet Created Successfully");
+                    break;
+                }
+            }
 
-        case "/about-us": {
-            res.writeHead(200);
-            return res.end("About page");
-        }
-
-        default: {
-            res.writeHead(404);
-            return res.end("Invalid page");
+            break;
         }
     }
-    res.end("dsds");
+
+
+   
 });
 
 server.listen(8000, () => {

@@ -1,0 +1,16 @@
+Timestamp: 1760025877585
+Request Method: GET
+Request URL: /tweets
+
+Timestamp: 1760025921577
+Request Method: GET
+Request URL: /tweets
+
+Timestamp: 1760025931801
+Request Method: GET
+Request URL: /
+
+Timestamp: 1760025970492
+Request Method: GET
+Request URL: /ewj
+
