@@ -3,8 +3,7 @@ const http = require("node:http");
 // const url = require("url");
 
 const server = http.createServer((req, res) => {
-
-     const logData = `Timestamp: ${Date.now()}\nRequest Method: ${req.method}\nRequest URL: ${req.url}\n\n`;
+    const logData = `Timestamp: ${Date.now()}\nRequest Method: ${req.method}\nRequest URL: ${req.url}\n\n`;
 
     fs.appendFile("./httpServer/logs.txt", logData, () => {});
 
