@@ -54,14 +54,28 @@
 // });
 
 // timeout_vs_immediate.js
-const fs = require("fs");
+// const fs = require("fs");
 
-setTimeout(() => {
-  console.log('timeout');
-}, 0);
+// setTimeout(() => {
+//   console.log('timeout');
+// }, 0);
 
-setImmediate(() => {
-  console.log('immediate');
-});
+// setImmediate(() => {
+//   console.log('immediate');
+// });
 
 // console.log("first")
+
+setTimeout(() => {
+    console.log("Timer 1");
+}, 0);
+
+setTimeout(() => {
+    console.log("Timer 2 start");
+    process.nextTick(() => console.log("nextTick inside Timer 2"));
+    console.log("Timer 2 end");
+}, 0);
+
+setTimeout(() => {
+    console.log("Timer 3");
+}, 0);
