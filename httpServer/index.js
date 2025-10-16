@@ -1,6 +1,7 @@
 const fs = require("node:fs");
 const http = require("node:http");
-// const url = require("url");
+
+const allTweets = [];
 
 const server = http.createServer((req, res) => {
     let body = "";
@@ -51,7 +52,7 @@ const server = http.createServer((req, res) => {
                             "Content-Type": "application/json",
                         }).end(
                             JSON.stringify({
-                                data: ["tweet-1", "tweet-2", "tweet-3"],
+                                allTweets
                             })
                         );
                         break;
@@ -69,7 +70,8 @@ const server = http.createServer((req, res) => {
             case "POST": {
                 switch (req.url) {
                     case "/tweets": {
-                        console.log(body);
+                        allTweets.push(JSON.parse(body));
+                        
                         res.writeHead(201).end("Tweet Created Successfully");
                         break;
                     }
