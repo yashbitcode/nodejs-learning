@@ -15,13 +15,17 @@ const books = [
     },
     {
         id: 3, 
-
         author: "Auth 3",
         title: "Book 3"
     },
 ];
 
-app.use(express.json());
+app.use(express.json);
+
+app.use((req, res, next) => {
+    console.log("MW: 1");
+    next();
+});
 
 app.get("/", (req, res) => res.send("Hi Bro!!"));
 
