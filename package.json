@@ -15,7 +15,7 @@
   "type": "commonjs",
   "main": "\t",
   "scripts": {
-    
+    "start": "node --watch basicAuths/index"
   },
   "dependencies": {
     "@types/express": "^5.0.3",
